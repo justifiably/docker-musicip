@@ -1,14 +1,12 @@
 FROM debian:jessie
-# FROM blitznote/debootstrap-amd64
-# FROM alpine:3.4
 MAINTAINER Justifiably <justifiably@ymail.com>
 
 RUN apt-get update && \
-#    apt-get install -yq ia32-libs && \
-    apt-get install libc6-i386 && \
+#   apt-get install -yq ia32-libs && \
+    apt-get install -yq libc6-i386 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV GOSU_VERSION 1.9
+ENV GOSU_VERSION 1.10
 RUN set -x \
     && apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
     && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
@@ -20,8 +18,6 @@ RUN set -x \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true \
     && apt-get purge -y --auto-remove ca-certificates wget
-
-# Better: get https://github.com/ncopa/su-exec
 
 # WORKDIR /opt
 # RUN wget http://www.spicefly.com/files/MusicMixer_x86_1.8.tgz
