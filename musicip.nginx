@@ -1,0 +1,30 @@
+upstream rawmusicip {
+      server 127.0.0.1:10002;  # actual musicip server
+}
+
+# This is the port for LMS to use.  We filter the output to map .mp3 files
+# back onto m4a.  See
+# http://hg.nginx.org/nginx/file/tip/src/http/modules/ngx_http_sub_filter_module.cserver
+server {
+       listen 10082;
+       sub_filter_types text/plain;
+       sub_filter_once off;
+       sub_filter '.m4a.mp3' '.m4a';
+       sub_filter '/srv/music/shadow-mp3/' '/srv/music/music/';
+
+       location / {
+          proxy_pass         http://rawmusicip;
+       }
+} 
+  
+  
+# Access musicip for convenience to reach server, refresh etc.
+server {
+       listen 80;
+       server_name musicip;
+       location / {
+               proxy_set_header   X-Real-IP $remote_addr;
+               proxy_set_header   Host      $http_host;
+               proxy_pass         http://127.0.0.1:10082/;
+       }
+}

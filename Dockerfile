@@ -2,7 +2,6 @@ FROM debian:jessie
 MAINTAINER Justifiably <justifiably@ymail.com>
 
 RUN apt-get update && \
-#   apt-get install -yq ia32-libs && \
     apt-get install -yq libc6-i386 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -19,6 +18,7 @@ RUN set -x \
     && gosu nobody true \
     && apt-get purge -y --auto-remove ca-certificates wget
 
+# Fetch from spicefly.com
 # WORKDIR /opt
 # RUN wget http://www.spicefly.com/files/MusicMixer_x86_1.8.tgz
 # RUN tar -xpf MusicMixer_x86_1.8.tgz && rm -f MusicMixer_x86_1.8.tgz
@@ -28,6 +28,8 @@ RUN set -x \
 ADD MusicMixer_x86_1.8.tgz /opt
 ADD index.html /opt/MusicIP/MusicMagicMixer/server
 RUN useradd -m -g users --uid 1057 musicip
+
+VOLUME /home/musicip
 
 EXPOSE 10002
 
