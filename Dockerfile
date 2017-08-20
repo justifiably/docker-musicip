@@ -1,6 +1,8 @@
 FROM debian:jessie
 MAINTAINER Justifiably <justifiably@ymail.com>
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && \
     apt-get install -yq libc6-i386 && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
