@@ -7,5 +7,5 @@ musicip:
   volumes:
     - /int/musicip:/home/musicip
     - /srv/music/:/srv/music:ro
-    - /srv/music-flac/:/srv/music-flac:ro
+
   
