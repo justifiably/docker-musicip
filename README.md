@@ -32,8 +32,3 @@ work, more or less.  I find it a cleaner solution than the one which
 is built into the Spicefly plugin, but YMMV.
 
 
-## TODO
-
-- It would be nice to shrink the image perhaps, using alpine or a smaller debootstrap
-- suexec (https://github.com/ncopa/su-exec) smaller than gosu
-
