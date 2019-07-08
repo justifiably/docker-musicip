@@ -15,11 +15,11 @@ containing your music files as volumes so they are visible to the
 server.   See the example `docker-compose.yml`.
 
 Before startup: in the directory mapped to `/home/musicip` you need to
-create the directory `./MusicMagic/` and put a `mmm.ini` file into it,
+create the directory `.MusicMagic` and put a `mmm.ini` file into it,
 start with the example included here and read the documentation at
 [Spicefly](https://www.spicefly.com/article.php?page=musicip-linux).
 Make sure the file and directory are owned by UID 1057 (or change the
-`PUID` arg).
+`PUID` arg and rebuild).
 
 See extensive information and binaries kindly maintained at
 [Spicefly.com](http://www.spicefly.com), including 
