@@ -1,4 +1,4 @@
-FROM justifiably/alpine-libc32
+FROM justifiably/alpine-libc32:latest
 
 ARG PUID=1057
 ADD MusicMixer_x86_1.8.tgz /opt
