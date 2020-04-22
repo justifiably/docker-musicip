@@ -10,20 +10,30 @@ Spotify made things difficult).
 
 ## Usage
 
-The server is available on port 10002.  You can map directories
-containing your music files as volumes so they are visible to the
-server.   See the example `docker-compose.yml`.
+Launch the container with a command like this:
 
-Before startup: in the directory mapped to `/home/musicip` you need to
+    docker run -d -p 10002:10002 -v <host-music-dir>:/music justifiably/musicip
+
+where <host-music-dir> is a directory containing music files.
+
+Visit the web server at <http://localhost:10002> and add some
+music files to analyse, from `/music` or other directories containing 
+your music files mounted as volumes so they are visible to the server.
+See the example `docker-compose.yml`.
+
+If you want to keep the database and settings outside the container, you can
+map a volume to `/home/musicip`.  This should have a subdirectory 
 create the directory `.MusicMagic` and put a `mmm.ini` file into it,
 start with the example included here and read the documentation at
 [Spicefly](https://www.spicefly.com/article.php?page=musicip-linux).
+
 Make sure the file and directory are owned by UID 1057 (or change the
 `PUID` arg and rebuild).
 
 See extensive information and binaries kindly maintained at
 [Spicefly.com](http://www.spicefly.com), including 
 [documentation of the API](http://www.spicefly.com/article.php?page=musicip-http).
+
 
 ## Tricks: changing file locations, types...
 

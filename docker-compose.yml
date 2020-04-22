@@ -5,7 +5,8 @@ musicip:
   ports:
     - 10002:10002
   volumes:
-    - /int/musicip:/home/musicip
-    - /srv/music/:/srv/music:ro
+    - /srv/music/:/srv/music:ro                  # mount your music directory somewhere inside the container
+    # - /int/musicip:/home/musicip/.MusicMagic   # to persist the db outside the container or edit mmm.ini
+
 
   
